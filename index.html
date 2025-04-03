@@ -9,46 +9,48 @@
 <body class="bg-gray-100 font-sans">
 
     <!-- Navigace -->
-    <nav class="bg-blue-600 p-4 text-white">
-        <div class="container mx-auto flex justify-between">
-            <a href="#about" class="text-lg">O mně</a>
-            <a href="#cv" class="text-lg">CV</a>
-            <a href="#projects" class="text-lg">Projekty</a>
-            <a href="#leetcode" class="text-lg">LeetCode</a>
-            <a href="#contact" class="text-lg">Kontakt</a>
-        </div>
+    <nav class="fixed top-0 left-0 w-full h-16 bg-white shadow-md z-50 flex items-center justify-center">
+        <ul class="flex space-x-6 text-black text-lg font-semibold">
+            <li><a href="#about" class="hover:text-blue-500">O mně</a></li>
+            <li><a href="#cv" class="hover:text-blue-500">Moje CV</a></li>
+            <li><a href="#projects" class="hover:text-blue-500">Projekty</a></li>
+            <li><a href="#leetcode" class="hover:text-blue-500">LeetCode</a></li>
+            <li><a href="#contact" class="hover:text-blue-500">Kontakt</a></li>
+        </ul>
     </nav>
 
     <!-- O mně -->
-    <section id="about" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">O mně</h2>
-            <div class="max-w-3xl mx-auto text-gray-700 text-lg text-justify">
-                <p class="mb-4">
-                    Jmenuji se <strong>Martin</strong> a po více než 11 letech ve školství jsem se rozhodl vydat novým směrem – stát se programátorem. Jako učitel jsem se věnoval výuce a rozvoji studentů, což mi dalo trpělivost, schopnost efektivní komunikace a dovednost vysvětlovat složité koncepty jednoduše. Tyto zkušenosti nyní využívám při učení se novým technologiím a práci na vlastních projektech.
-                </p>
-                <p class="mb-4">
-                    Od dětství mě fascinovaly technologie a řešení problémů. Dodnes si pamatuji, jak jsme s bratrem strávili hodiny hledáním způsobu, jak rozběhnout GTA San Andreas – a právě ten pocit úspěchu zažívám díky programování znovu a znovu. Programování mě natolik pohlcuje, že při něm ztrácím pojem o čase, a proto jsem se rozhodl proměnit svůj koníček v profesi, která mě bude naplňovat i dobře živit.
-                </p>
-                <h3 class="text-2xl font-semibold text-gray-800 mt-8">Co mě motivuje?</h3>
-                <p class="mb-4">
-                    Baví mě řešit problémy a hledat inovativní řešení. Každý projekt je pro mě novou výzvou, která mi pomáhá růst a neustále se učit.
-                </p>
-                <h3 class="text-2xl font-semibold text-gray-800 mt-8">Moje dovednosti</h3>
-                <p class="mb-4">
-                    Mám zkušenosti s <strong>Pythonem, Django, HTML, CSS</strong> a nyní se učím základy <strong>SQL</strong>. Do budoucna chci své dovednosti dále rozšiřovat.
-                </p>
-                <h3 class="text-2xl font-semibold text-gray-800 mt-8">Když si chci odpočinout...</h3>
-                <p class="mb-4">
-                    Vím, jak důležité je udržet si rovnováhu mezi prací a odpočinkem. Ve volném čase se věnuji rodině, pobytu v přírodě se svým psem, čtení a sportu – fotbalu, fitness, tenisu či plavání. Tyto aktivity mi pomáhají udržet si čerstvou mysl, inspiraci a motivaci pro nové výzvy.
-                </p>
-                <h3 class="text-2xl font-semibold text-gray-800 mt-8">Můj cíl?</h3>
-                <p class="mb-4">
-                    Stát se profesionálním vývojářem, dělat práci, která mě baví, a podílet se na projektech s reálným dopadem.
-                </p>
+    <div class="pt-20">
+        <section id="about" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">O mně</h2>
+                <div class="max-w-3xl mx-auto text-gray-700 text-lg text-justify">
+                    <p class="mb-4">
+                        Jmenuji se <strong>Martin</strong> a po více než 11 letech ve školství jsem se rozhodl vydat novým směrem – stát se programátorem. Jako učitel jsem se věnoval výuce a rozvoji studentů, což mi dalo trpělivost, schopnost efektivní komunikace a dovednost vysvětlovat složité koncepty jednoduše. Tyto zkušenosti nyní využívám při učení se novým technologiím a práci na vlastních projektech.
+                    </p>
+                    <p class="mb-4">
+                        Od dětství mě fascinovaly technologie a řešení problémů. Dodnes si pamatuji, jak jsme s bratrem strávili hodiny hledáním způsobu, jak rozběhnout GTA San Andreas – a právě ten pocit úspěchu zažívám díky programování znovu a znovu. Programování mě natolik pohlcuje, že při něm ztrácím pojem o čase, a proto jsem se rozhodl proměnit svůj koníček v profesi, která mě bude naplňovat i dobře živit.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8">Co mě motivuje?</h3>
+                    <p class="mb-4">
+                        Baví mě řešit problémy a hledat inovativní řešení. Každý projekt je pro mě novou výzvou, která mi pomáhá růst a neustále se učit.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8">Moje dovednosti</h3>
+                    <p class="mb-4">
+                        Mám zkušenosti s <strong>Pythonem, Django, HTML, CSS</strong> a nyní se učím základy <strong>SQL</strong>. Do budoucna chci své dovednosti dále rozšiřovat.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8">Když si chci odpočinout...</h3>
+                    <p class="mb-4">
+                        Vím, jak důležité je udržet si rovnováhu mezi prací a odpočinkem. Ve volném čase se věnuji rodině, pobytu v přírodě se svým psem, čtení a sportu – fotbalu, fitness, tenisu či plavání. Tyto aktivity mi pomáhají udržet si čerstvou mysl, inspiraci a motivaci pro nové výzvy.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mt-8">Můj cíl?</h3>
+                    <p class="mb-4">
+                        Stát se profesionálním vývojářem, dělat práci, která mě baví, a podílet se na projektech s reálným dopadem.
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- Moje CV -->
     <section id="cv" class="py-20 px-4">
