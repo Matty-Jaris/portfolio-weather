@@ -8,6 +8,7 @@
     <link rel="icon" href="static/images/favicon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -84,12 +85,15 @@
         </section>
     </div>
 
-    <!-- Moje CV -->
-    <section id="cv" class="py-20 px-4">
+    <!-- Sekce CV -->
+    <section id="cv" class="py-20 px-4 bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-semibold">Můj CV</h2>
-            <p class="mt-4 text-lg">Tady bude moje CV.</p>
-            <a href="odkaz_na_cv" class="text-blue-600 underline">Stáhnout moje CV</a>
+            <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-100">Můj CV</h2>
+            <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Tady bude moje CV.</p>
+            <!-- Tlačítko pro stažení CV s ikonou -->
+            <a href="static/files/martin-jarabek-cv.pdf" download class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                <i class="fas fa-file-download mr-2"></i> Stáhnout moje CV
+            </a>
         </div>
     </section>
 
