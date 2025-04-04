@@ -12,16 +12,44 @@
 <body class="bg-gray-100 font-sans">
 
   <!-- Navigace -->
-    <nav class="fixed top-0 left-0 w-full h-16 bg-white shadow-md z-50 flex items-center px-6">
-        <img src="static/images/logo-light.png" alt="Logo MJ" class="h-12 w-auto mr-6">
-        <ul class="flex space-x-6 text-black text-lg font-semibold mx-auto">
-            <li><a href="#about" class="hover:text-blue-500">O mně</a></li>
-            <li><a href="#cv" class="hover:text-blue-500">Moje CV</a></li>
-            <li><a href="#projects" class="hover:text-blue-500">Projekty</a></li>
-            <li><a href="#leetcode" class="hover:text-blue-500">LeetCode</a></li>
-            <li><a href="#contact" class="hover:text-blue-500">Kontakt</a></li>
-        </ul>
-    </nav>
+<nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50 px-6">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <img src="static/images/logo-light.png" alt="Logo MJ" class="h-12 w-auto">
+  
+      <!-- Hamburger tlačítko -->
+      <button id="menu-toggle" class="block md:hidden text-3xl focus:outline-none">
+        ☰
+      </button>
+  
+      <!-- Navigační odkazy -->
+      <ul id="nav-links" class="hidden md:flex space-x-6 text-black text-lg font-semibold mx-auto">
+        <li><a href="#about" class="hover:text-blue-500">O mně</a></li>
+        <li><a href="#cv" class="hover:text-blue-500">Moje CV</a></li>
+        <li><a href="#projects" class="hover:text-blue-500">Projekty</a></li>
+        <li><a href="#leetcode" class="hover:text-blue-500">LeetCode</a></li>
+        <li><a href="#contact" class="hover:text-blue-500">Kontakt</a></li>
+      </ul>
+    </div>
+  
+    <!-- Skryté menu pro mobily -->
+    <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-2 mt-2 text-black text-lg font-semibold">
+      <li><a href="#about" class="block px-2 py-1 hover:text-blue-500">O mně</a></li>
+      <li><a href="#cv" class="block px-2 py-1 hover:text-blue-500">Moje CV</a></li>
+      <li><a href="#projects" class="block px-2 py-1 hover:text-blue-500">Projekty</a></li>
+      <li><a href="#leetcode" class="block px-2 py-1 hover:text-blue-500">LeetCode</a></li>
+      <li><a href="#contact" class="block px-2 py-1 hover:text-blue-500">Kontakt</a></li>
+    </ul>
+  </nav>
+  
+  <script>
+    const toggleButton = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+  
+    toggleButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 
     <!-- O mně -->
     <div class="pt-20">
