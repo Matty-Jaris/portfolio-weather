@@ -33,24 +33,17 @@
       </ul>
     </div>
   
-    <!-- Skryté menu pro mobily -->
-    <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-2 mt-2 text-black text-lg font-semibold">
-      <li><a href="#about" class="block px-2 py-1 hover:text-blue-500">O mně</a></li>
-      <li><a href="#cv" class="block px-2 py-1 hover:text-blue-500">Moje CV</a></li>
-      <li><a href="#projects" class="block px-2 py-1 hover:text-blue-500">Projekty</a></li>
-      <li><a href="#leetcode" class="block px-2 py-1 hover:text-blue-500">LeetCode</a></li>
-      <li><a href="#contact" class="block px-2 py-1 hover:text-blue-500">Kontakt</a></li>
-    </ul>
-  </nav>
+        <!-- Skryté menu pro mobily -->
+        <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-2 mt-2 text-black text-lg font-semibold">
+        <li><a href="#about" class="block px-2 py-1 hover:text-blue-500">O mně</a></li>
+        <li><a href="#cv" class="block px-2 py-1 hover:text-blue-500">Moje CV</a></li>
+        <li><a href="#projects" class="block px-2 py-1 hover:text-blue-500">Projekty</a></li>
+        <li><a href="#leetcode" class="block px-2 py-1 hover:text-blue-500">LeetCode</a></li>
+        <li><a href="#contact" class="block px-2 py-1 hover:text-blue-500">Kontakt</a></li>
+        </ul>
+    </nav>
   
-  <script>
-    const toggleButton = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-  
-    toggleButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
+    
 
     <!-- O mně -->
     <div class="pt-20">
@@ -144,19 +137,7 @@
         </div>
     </section>
     
-    <script>
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                content.classList.toggle('hidden');
-                if (!content.classList.contains('hidden')) {
-                    content.style.height = 'auto';
-                } else {
-                    content.style.height = '0';
-                }
-            });
-        });
-    </script>
+    
 
     <!-- Kontakt -->
     <section id="contact" class="py-20 px-4 bg-blue-100 dark:bg-blue-900 transition-colors duration-300">
@@ -199,6 +180,28 @@
             </div>
         </div>
     </section>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          // Hamburger menu toggle
+          const toggleButton = document.getElementById('menu-toggle');
+          const mobileMenu = document.getElementById('mobile-menu');
+          toggleButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+          });
+          
+          // Omezíme druhý skript jen na tlačítka uvnitř sekce LeetCode, aby nezasahoval do hamburger tlačítka
+          document.querySelectorAll('#leetcode button').forEach(button => {
+            button.addEventListener('click', () => {
+              const content = button.nextElementSibling;
+              content.classList.toggle('hidden');
+              if (!content.classList.contains('hidden')) {
+                content.style.height = 'auto';
+              } else {
+                content.style.height = '0';
+              }
+            });
+          });
+        });
+      </script>
 </body>
 </html>
