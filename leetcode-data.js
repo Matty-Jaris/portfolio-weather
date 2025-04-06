@@ -174,42 +174,39 @@ const leetcodeTasks = [
       solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/29_valid_palindrome"
     },
     {
-      title: "Úloha 30: ",
-      description: "Popis úlohy: ",
-      problemUrl: "",
-      solutionUrl: ""
+      title: "Úloha 30: Single Number",
+      description: "Popis úlohy: Úkolem je najít jediné číslo v poli, které se vyskytuje pouze jednou, zatímco všechna ostatní čísla se vyskytují dvakrát. To musí být provedeno s časovou složitostí O(n) a konstantním dodatečným prostorem.",
+      problemUrl: "https://leetcode.com/problems/single-number/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/30_single_number"
     },
     {
-      title: "Úloha 31: ",
-      description: "Popis úlohy: ",
-      problemUrl: "",
-      solutionUrl: ""
+      title: "Úloha 31: Linked List Cycle",
+      description: "Popis úlohy: Úloha se zaměřuje na detekci cyklu v propojeném seznamu. Pokud existuje cyklus, znamená to, že některý uzel je dosažitelný z jiného uzlu, a to opakovaně, protože ukazatel 'next' vede zpět k již navštívenému uzlu. Cílem je zjistit, zda seznam obsahuje takový cyklus, nebo zda všechny uzly vedou pouze k jednomu konečnému uzlu.",
+      problemUrl: "https://leetcode.com/problems/linked-list-cycle/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/31_linked_list_cycle"
     },
     {
-      title: "Úloha 32: ",
-      description: "Popis úlohy: ",
-      problemUrl: "",
-      solutionUrl: ""
+      title: "Úloha 32: Binary Tree Preorder Traversal",
+      description: "Popis úlohy: Úloha se zaměřuje na pre-order průchod binárním stromem. Cílem je vrátit seznam hodnot uzlů stromu, které jsou navštíveny v pre-order pořadí (kořen, levý podstrom, pravý podstrom). To znamená, že nejprve navštívíme kořen stromu, pak rekurzivně prozkoumáme levý podstrom, a nakonec pravý podstrom. Tato úloha zkoumá, jak provést tento průchod buď rekurzivně, nebo iterativně.",
+      problemUrl: "https://leetcode.com/problems/binary-tree-preorder-traversal/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/32_binary_tree_preorder_traversal"
     },
     {
-      title: "Úloha 33: ",
-      description: "Popis úlohy: ",
-      problemUrl: "",
-      solutionUrl: ""
+      title: "Úloha 33: Binary Tree Postorder Traversal",
+      description: "Popis úlohy: Postorder průchod binárního stromu navštěvuje uzly v následujícím pořadí: levý podstrom, pravý podstrom, kořen. Tento průchod lze realizovat jak rekurzivně, tak iterativně. V tomto případě chceme vrátit hodnoty uzlů ve postorder pořadí, počínaje nejlevějším uzlem, pokračujeme pravým podstromem a končíme na kořenu. Výzvou je implementovat tento průchod iterativně (protože rekurzivní řešení je triviální). Pro iterativní přístup používáme zásobník, který simuluje rekurzivní volání.",
+      problemUrl: "https://leetcode.com/problems/binary-tree-postorder-traversal/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/33_binary_tree_postorder_traversal"
     },
     {
-      title: "Úloha 34: ",
-      description: "Popis úlohy: ",
-      problemUrl: "",
-      solutionUrl: ""
+      title: "Úloha 34: Intersection of Two Linked Lists",
+      description: "Popis úlohy: Cílem tohoto úkolu je zjistit, zda se dvě jednosměrné spojové seznamy protínají, a pokud ano, vrátit uzel, kde k tomuto protínání dochází. Pokud se seznamy neprotínají, funkce by měla vrátit null. Pro řešení problému můžeme využít dvě techniky: 1. Délka seznamů: Nejprve zjistíme délky obou seznamů. Následně synchronizujeme začátek obou seznamů tím, že v seznamu, který je delší, přeskočíme rozdíl v délce mezi oběma seznamy. Poté procházejí oba seznamy současně, dokud nenarazíme na stejný uzel, nebo dokud neprojdeme seznamy. 2. Procházení obou seznamů: Po synchronizaci začátků seznamů procházíme oba seznamy souběžně. Jakmile narazíme na stejné uzly, znamená to, že seznamy se protínají na tomto uzlu, který vrátíme. Pokud se seznamy neprotínají, vrátíme null. Tento algoritmus běží v čase O(m + n) a používá pouze O(1) dodatečné paměti, což odpovídá požadavkům úlohy.",
+      problemUrl: "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/34_intersection_of_two_linked_lists"
     },
     {
-      title: "Úloha 35: ",
-      description: "Popis úlohy: ",
-      problemUrl: "",
-      solutionUrl: ""
+      title: "Úloha 35: Excel Sheet Column Title",
+      description: "Popis úlohy: Úkolem je převést celé číslo na název sloupce v Excelu. V Excelu jsou sloupce označeny písmeny, přičemž po písmeni 'Z' následuje 'AA', 'AB' atd. Tento úkol je podobný převodu čísla do jiného číselného systému, kde základ je 26, ale s tím rozdílem, že místo číslic používáme písmena.",
+      problemUrl: "https://leetcode.com/problems/excel-sheet-column-title/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/35_excel_sheet_column_title"
     },    
-    
-    
-  
   ];
