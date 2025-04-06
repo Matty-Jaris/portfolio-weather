@@ -109,82 +109,11 @@
     <section id="leetcode" class="py-20 px-4 bg-gray-50 dark:bg-gray-700 transition-colors duration-300">
         <div class="container mx-auto text-center">
           <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-100">Moje úlohy na LeetCode</h2>
-          <div class="mt-8 space-y-4">
-            <!-- Úloha 1 -->
-            <div class="bg-white p-2 rounded-lg shadow-lg">
-              <button class="text-lg font-semibold text-gray-800 dark:text-gray-100 w-full text-left">
-                Úloha 1: Two Sum
-              </button>
-              <div class="mt-2 text-gray-600 dark:text-gray-400 hidden text-left">
-                <p>Popis úlohy: Najděte dvě čísla v poli, jejichž součet je roven dané hodnotě target. Vráťte indexy těchto čísel. Každý vstup má přesně jedno řešení a není dovoleno použít stejné číslo dvakrát.</p>
-                <div class="flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://leetcode.com/problems/two-sum/" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-center">
-                    Zobrazit úlohu
-                  </a>
-                  <a href="https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/1_two_sum" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-center">
-                    Zobrazit řešení
-                  </a>
-                </div>
-              </div>
-            </div>
-      
-            <!-- Úloha 2 -->
-            <div class="bg-white p-2 rounded-lg shadow-lg">
-              <button class="text-lg font-semibold text-gray-800 dark:text-gray-100 w-full text-left">
-                Úloha 2: Palindrome Number
-              </button>
-              <div class="mt-2 text-gray-600 dark:text-gray-400 hidden text-left">
-                <p>Popis úlohy: Úloha spočívá v tom, zjistit, zda je dané celé číslo palindrom. Palindrom je číslo, které čte stejně zleva i zprava. Úkolem je vrátit hodnotu true, pokud je číslo palindrom, nebo false, pokud není.</p>
-                <div class="flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://leetcode.com/problems/palindrome-number/" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-center">
-                    Zobrazit úlohu
-                  </a>
-                  <a href="https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/2_palindrome_number" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-center">
-                    Zobrazit řešení
-                  </a>
-                </div>
-              </div>
-            </div>
-      
-            <!-- Úloha 3 -->
-            <div class="bg-white p-2 rounded-lg shadow-lg">
-              <button class="text-lg font-semibold text-gray-800 dark:text-gray-100 w-full text-left">
-                Úloha 3: Roman to Integer
-              </button>
-              <div class="mt-2 text-gray-600 dark:text-gray-400 hidden text-left">
-                <p>Popis úlohy: Úloha spočívá v převodu římského čísla na celé číslo. Římská čísla jsou tvořena kombinací symbolů, přičemž některé symboly, jako například I před V nebo X, znamenají odečítání. Cílem je správně interpretovat tuto kombinaci a převést ji na odpovídající hodnotu celého čísla.</p>
-                <div class="flex flex-col sm:flex-row gap-2 mt-4">
-                  <a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-center">
-                    Zobrazit úlohu
-                  </a>
-                  <a href="https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/3_roman_to_integer" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-center">
-                    Zobrazit řešení
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Úloha 4 -->
-            <div class="bg-white p-2 rounded-lg shadow-lg">
-                <button class="text-lg font-semibold text-gray-800 dark:text-gray-100 w-full text-left">
-                  Úloha 4: Longest Common Prefix
-                </button>
-                <div class="mt-2 text-gray-600 dark:text-gray-400 hidden text-left">
-                  <p>Úloha spočívá v nalezení nejdelšího společného prefixu mezi řetězci v poli. Pokud takový prefix neexistuje, vrátí se prázdný řetězec.</p>
-                  <div class="flex flex-col sm:flex-row gap-2 mt-4">
-                    <a href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-center">
-                      Zobrazit úlohu
-                    </a>
-                    <a href="https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/4_longest_common_prefix" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-center">
-                      Zobrazit řešení
-                    </a>
-                  </div>
-                </div>
-              </div>
-      
-            <!-- Další úlohy -->
-          </div>
+          <!-- Kontejner, do kterého se dynamicky vloží jednotlivé úlohy -->
+          <div id="leetcode-tasks" class="mt-8 space-y-4"></div>
         </div>
-      </section>
+    </section>
+  
     
     
 
@@ -229,28 +158,53 @@
           </div>
         </div>
       </section>
+    <!-- Načtení dat z externího souboru -->
+    <script src="leetcode-data.js"></script>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          // Hamburger menu toggle
-          const toggleButton = document.getElementById('menu-toggle');
-          const mobileMenu = document.getElementById('mobile-menu');
-          toggleButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-          });
-          
-          // Omezíme druhý skript jen na tlačítka uvnitř sekce LeetCode, aby nezasahoval do hamburger tlačítka
-          document.querySelectorAll('#leetcode button').forEach(button => {
-            button.addEventListener('click', () => {
-              const content = button.nextElementSibling;
-              content.classList.toggle('hidden');
-              if (!content.classList.contains('hidden')) {
-                content.style.height = 'auto';
-              } else {
-                content.style.height = '0';
-              }
-            });
-          });
+    document.addEventListener("DOMContentLoaded", function () {
+        // Hamburger menu toggle
+        const toggleButton = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        toggleButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
         });
-      </script>
+        
+        // Dynamické načtení úloh pro LeetCode
+        const container = document.getElementById("leetcode-tasks");
+        leetcodeTasks.forEach(task => {
+        const taskDiv = document.createElement("div");
+        taskDiv.className = "bg-white p-1.5 rounded-lg shadow-lg";
+
+        taskDiv.innerHTML = `
+            <button class="text-lg font-semibold text-gray-800 dark:text-gray-100 w-full text-left">
+            ${task.title}
+            </button>
+            <div class="mt-2 text-gray-600 dark:text-gray-400 hidden text-left">
+            <p>${task.description}</p>
+            <div class="flex flex-col sm:flex-row gap-2 mt-4">
+                <a href="${task.problemUrl}" target="_blank"
+                class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-center">
+                Zobrazit úlohu
+                </a>
+                <a href="${task.solutionUrl}" target="_blank"
+                class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-center">
+                Zobrazit řešení
+                </a>
+            </div>
+            </div>
+        `;
+
+        // Listener pro toggle detailu úlohy
+        const button = taskDiv.querySelector("button");
+        const content = taskDiv.querySelector("div");
+        button.addEventListener("click", () => {
+            content.classList.toggle("hidden");
+        });
+
+        container.appendChild(taskDiv);
+        });
+    });
+    </script>
 </body>
 </html>
