@@ -149,6 +149,66 @@ const leetcodeTasks = [
       problemUrl: "https://leetcode.com/problems/path-sum/",
       solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/25_path_sum"
     },
+    {
+      title: "Úloha 26: Pascal's Triangle",
+      description: "Popis úlohy: Úloha spočívá v generování prvních numRows řádků Pascalova trojúhelníku. Každé číslo v trojúhelníku je součtem dvou čísel přímo nad ním. První a poslední číslo v každém řádku je vždy 1, a čísla mezi nimi jsou součtem dvou čísel z předchozího řádku.",
+      problemUrl: "https://leetcode.com/problems/pascals-triangle/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/26_pascal's_triangle"
+    },
+    {
+      title: "Úloha 27: Pascal's Triangle II",
+      description: "Popis úlohy: Úloha spočívá v získání určitého řádku Pascalova trojúhelníku na základě indexu rowIndex. Tento řádek obsahuje hodnoty, které jsou součtem dvou čísel přímo nad sebou v předchozím řádku. Cílem je optimalizovat algoritmus tak, aby využíval pouze O(rowIndex) dodatečného prostoru.",
+      problemUrl: "https://leetcode.com/problems/pascals-triangle-ii/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/27_pascal's_triangle_II"
+    },
+    {
+      title: "Úloha 28: Best Time to Buy and Sell Stock",
+      description: "Popis úlohy: Úloha spočívá v nalezení maximálního zisku při koupi a prodeji akcií v daných dnech. Máme pole cen akcií, kde každý prvek představuje cenu akcie v konkrétní den. Naším cílem je zjistit, jaký maximální zisk lze dosáhnout, pokud koupíme akcii v jednom dni a prodáme ji v pozdějším dni. Pokud není možné dosáhnout žádného zisku, vrátíme 0.",
+      problemUrl: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/28_best_time_to_buy_and_sell_stock"
+    },
+    {
+      title: "Úloha 29: Valid Palindrome",
+      description: "Popis úlohy: Úloha spočívá v ověření, zda daný řetězec je palindrom, přičemž je třeba ignorovat rozdíly mezi velkými a malými písmeny a všechny nealfanumerické znaky. Po těchto úpravách je třeba zjistit, zda se řetězec čte stejně zepředu i zezadu.",
+      problemUrl: "https://leetcode.com/problems/valid-palindrome/",
+      solutionUrl: "https://github.com/Matty-Jaris/LeetCode-solutions/blob/main/29_valid_palindrome"
+    },
+    {
+      title: "Úloha 30: ",
+      description: "Popis úlohy: ",
+      problemUrl: "",
+      solutionUrl: ""
+    },
+    {
+      title: "Úloha 31: ",
+      description: "Popis úlohy: ",
+      problemUrl: "",
+      solutionUrl: ""
+    },
+    {
+      title: "Úloha 32: ",
+      description: "Popis úlohy: ",
+      problemUrl: "",
+      solutionUrl: ""
+    },
+    {
+      title: "Úloha 33: ",
+      description: "Popis úlohy: ",
+      problemUrl: "",
+      solutionUrl: ""
+    },
+    {
+      title: "Úloha 34: ",
+      description: "Popis úlohy: ",
+      problemUrl: "",
+      solutionUrl: ""
+    },
+    {
+      title: "Úloha 35: ",
+      description: "Popis úlohy: ",
+      problemUrl: "",
+      solutionUrl: ""
+    },    
     
     
   
