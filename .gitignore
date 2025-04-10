@@ -1,6 +1,28 @@
+# Python
 __pycache__/
-db.sqlite3
-*.pyc
+*.py[cod]
 *.pyo
+*.pyd
 *.log
+*.sqlite3
+
+# Virtual environments
 venv/
+env/
+
+# Django
+db.sqlite3
+
+# Node.js (pokud bys někdy doplnil frontend nástroje)
+node_modules/
+package-lock.json
+
+# Tailwind výstupy
+static/css/tailwind.css
+
+# OS specifické soubory
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -101,7 +102,7 @@
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-semibold">Moje Projekty</h2>
             <p class="mt-4 text-lg">Odkaz na moje projekty:</p>
-            <a href="https://github.com/tvoje-jmeno" class="text-blue-600 underline">Můj GitHub</a>
+            <a href="/weather" class="button">Aplikace na počasí</a>
         </div>
     </section>
 
@@ -159,7 +160,7 @@
         </div>
       </section>
     <!-- Načtení dat z externího souboru -->
-    <script src="leetcode-data.js"></script>
+    <script src="{% static 'js/leetcode-data.js' %}"></script>
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
