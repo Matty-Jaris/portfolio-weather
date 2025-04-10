@@ -13,7 +13,7 @@ templates = Jinja2Templates(directory="weather_app/templates")
 
 API_KEY = "22cf61ec3c1f44665e6140df5891c249"  
 
-@app.post (root_path="/weather_app")
+@app.post("/weather", response_class=HTMLResponse)
 async def get_weather(request: Request, city: str = Form(...)):
     weather_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=cz"
     forecast_url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API_KEY}&units=metric&lang=cz"
