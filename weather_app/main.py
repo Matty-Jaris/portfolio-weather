@@ -92,7 +92,7 @@ async def get_weather(request: Request, city: str = Form(...)):
         "background_image": background_image
     })
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/weather_app", response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
