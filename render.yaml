@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: portfolio-weather
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn asgi:application --host 0.0.0.0 --port 10000"
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: DJANGO_SETTINGS_MODULE
+        value: portfolio.settings
