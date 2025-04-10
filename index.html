@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -16,7 +17,7 @@
 <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50 px-6">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <img src="static/images/logo-light.png" alt="Logo MJ" class="h-12 w-auto">
+      <img src="{% static 'images/logo-light.png' %}" alt="Logo">
   
       <!-- Hamburger tlačítko -->
       <button id="menu-toggle" class="block md:hidden text-3xl focus:outline-none">
@@ -86,10 +87,10 @@
     
             <!-- Tlačítko pro stažení CV s ikonou -->
             <div class="mt-8 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="static/files/martin-jarabek-cv.pdf" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+              <a href="{% static 'files/martin-jarabek-cv.pdf' %}" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
                   <i class="fas fa-eye mr-2"></i> Zobrazit moje CV
                 </a>
-                <a href="static/files/martin-jarabek-cv.pdf" download class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                <a href="{% static 'files/martin-jarabek-cv.pdf' %}" download class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
                   <i class="fas fa-file-download mr-2"></i> Stáhnout moje CV
                 </a>
             </div>
@@ -159,7 +160,7 @@
         </div>
       </section>
     <!-- Načtení dat z externího souboru -->
-    <script src="static/js/leetcode-data.js"></script>
+    <script src="{% static 'js/leetcode-data.js' %}"></script>
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {

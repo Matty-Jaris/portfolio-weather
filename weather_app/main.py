@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="weather_app/static"), name="static")
 templates = Jinja2Templates(directory="weather_app/templates")
+templates.env.globals['STATIC_PREFIX'] = '/weather_app/static'
 
 API_KEY = "22cf61ec3c1f44665e6140df5891c249"  
 
