@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mgr. Martin Jarábek</title>
     <!-- Favicon -->
-    <link rel="icon" href="static/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -17,7 +17,10 @@
 <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50 px-6">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <img src="{% static 'images/logo-light.png' %}" alt="Logo">
+      <div class="flex items-center">
+        <img src="{% static 'images/logo-light.png' %}" alt="Logo" class="h-12 w-auto">
+      </div>
+      
   
       <!-- Hamburger tlačítko -->
       <button id="menu-toggle" class="block md:hidden text-3xl focus:outline-none">
@@ -102,7 +105,7 @@
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-semibold">Moje Projekty</h2>
             <p class="mt-4 text-lg">Odkaz na moje projekty:</p>
-            <a href="/weather_app" target="_blank" class="text-blue-600 underline">Spustit aplikaci na počasí</a>
+            <a href="/weather_app/" target="_blank" class="text-blue-600 underline">Spustit aplikaci na počasí</a>
         </div>
     </section>
 

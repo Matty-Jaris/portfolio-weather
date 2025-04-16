@@ -5,16 +5,19 @@
   <title>🌦️ Weather App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <!-- favicon -->
+  <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="min-h-screen text-gray-900 relative">
   {% if background_image %}
-  <div class="absolute inset-0 z-0">
+  <div class="fixed inset-0 z-[-1] pointer-events-none">
     <img src="{{ background_image }}" alt="počasí" class="w-full h-full object-cover opacity-30">
   </div>
   {% endif %}
+
 
   <div class="relative z-10">
     <header class="bg-blue-600 text-white py-4 shadow-md">

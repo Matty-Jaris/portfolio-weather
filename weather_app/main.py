@@ -7,12 +7,16 @@ import calendar
 from collections import defaultdict
 from fastapi.staticfiles import StaticFiles
 
+
 app = FastAPI()
+
 app.mount("/static", StaticFiles(directory="weather_app/static"), name="static")
+
+
 templates = Jinja2Templates(directory="weather_app/templates")
 templates.env.globals['STATIC_PREFIX'] = '/weather_app/static'
 
-API_KEY = "22cf61ec3c1f44665e6140df5891c249"  
+API_KEY = "22cf61ec3c1f44665e6140df5891c249" 
 
 @app.post("/weather", response_class=HTMLResponse)
 async def get_weather(request: Request, city: str = Form(...)):
@@ -79,9 +83,12 @@ async def get_weather(request: Request, city: str = Form(...)):
         "drizzle": "rain.jpg",
         "mist": "fog.jpg"
     }
-    background_image = f"/static/img/{backgrounds.get(condition, 'sun.jpg')}"
+    
+    background_image = f"{templates.env.globals['STATIC_PREFIX']}/images/{backgrounds.get(condition, 'sun.jpg')}"
 
-    return templates.TemplateResponse("index.html", {
+
+
+    return templates.TemplateResponse("weather.html", {
         "request": request,
         "weather": weather_response,
         "labels": labels,
@@ -95,6 +102,7 @@ async def get_weather(request: Request, city: str = Form(...)):
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("weather.html", {"request": request})
+
 
 

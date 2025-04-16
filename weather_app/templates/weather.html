@@ -2,7 +2,7 @@
 
 {% block content %}
   <!-- Vyhledávací pole -->
-  <form method="post" action="/weather" class="flex flex-col md:flex-row gap-2 mb-6">
+  <form method="post" action="/weather_app/weather" class="flex flex-col md:flex-row gap-2 mb-6">
     <input type="text" name="city" placeholder="Zadej město" required
            class="border rounded-md px-4 py-2 w-full">
     <button type="submit"
@@ -12,6 +12,8 @@
   </form>
 
   {% if weather %}
+  
+
     <!-- Horní bublina s dnešními hodnotami -->
     <div class="bg-white/80 backdrop-blur-lg rounded-3xl p-6 shadow-lg mb-6">
       <h2 class="text-2xl font-bold text-gray-800 mb-4">Dnešní počasí – {{ weather.name }}</h2>
@@ -21,7 +23,8 @@
         {% set values = [weather.main.temp ~ ' °C', weather.weather[0].description, weather.main.humidity ~ ' %', rain_data | sum | round(1) ~ ' mm', weather.wind.speed ~ ' m/s'] %}
         {% for i in range(icons|length) %}
           <div class="bg-blue-100 p-4 rounded-xl shadow flex flex-col items-center">
-            <img src="/static/img/{{ icons[i] }}.png" alt="{{ bubble_labels[i] }}" class="w-12 h-12 mb-2">
+            <img src="{{ STATIC_PREFIX }}/images/{{ icons[i] }}.png" alt="{{ bubble_labels[i] }}" class="w-12 h-12 mb-2" onerror="this.style.display='none'">
+
             <p class="text-lg font-semibold">{{ values[i] }}</p>
             <p class="text-sm text-gray-600">{{ bubble_labels[i] }}</p>
           </div>
