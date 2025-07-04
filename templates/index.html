@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body class="bg-gray-100 font-sans">
 
   <!-- Navigace -->
@@ -231,5 +232,154 @@
         });
       });
     </script>
+    <!-- Chatbot Widget BEGIN -->
+<style>
+#mj-chatbot-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow .2s;
+}
+#mj-chatbot-bubble:hover { box-shadow: 0 4px 18px rgba(37,99,235,0.25);}
+#mj-chatbot-window {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 360px; max-width: 96vw; height: 480px; max-height: 80vh;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 24px rgba(37,99,235,0.15);
+  display: none;
+  flex-direction: column;
+  z-index: 100000;
+  overflow: hidden;
+}
+@media (max-width: 600px) {
+  #mj-chatbot-window { width: 98vw; height: 90vh; right: 1vw; bottom: 70px; border-radius: 10px; }
+  #mj-chatbot-bubble { right: 8px; bottom: 8px; width: 52px; height: 52px; }
+}
+#mj-chatbot-header {
+  background: #2563eb;
+  color: #fff;
+  padding: 16px;
+  font-size: 1.1em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#mj-chatbot-close {
+  cursor: pointer; font-size: 1.4em; font-weight: bold; color: #fff; background: none; border: none;
+}
+#mj-chatbot-messages {
+  flex: 1 1 auto;
+  padding: 12px;
+  overflow-y: auto;
+  background: #f6f8fb;
+  font-size: 0.97em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mj-chatbot-msg-user { align-self: flex-end; background: #2563eb; color: #fff; border-radius: 14px 14px 4px 14px; padding: 8px 13px; max-width: 75%; }
+.mj-chatbot-msg-bot { align-self: flex-start; background: #eaefff; color: #222; border-radius: 14px 14px 14px 4px; padding: 8px 13px; max-width: 75%; }
+#mj-chatbot-inputbar {
+  padding: 10px; background: #fff; border-top: 1px solid #e4e4e4; display: flex; gap: 8px;
+}
+#mj-chatbot-input {
+  flex: 1; border-radius: 8px; border: 1px solid #cfd8dc; padding: 7px 11px;
+  outline: none; font-size: 1em; background: #f9fafb;
+}
+#mj-chatbot-send { background: #2563eb; color: #fff; border: none; border-radius: 8px; padding: 7px 16px; font-weight: bold; cursor: pointer;}
+#mj-chatbot-send:disabled { opacity: 0.7; cursor: default;}
+</style>
+
+<div id="mj-chatbot-bubble" title="Zeptejte se na cokoliv!">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#fff" fill-opacity=".13"/><path d="M7 8.5a5 5 0 0 1 10 0c0 2.36-2.19 4.02-4.13 4.85a.62.62 0 0 0-.37.57V15" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="18" r="1" fill="#fff"/></svg>
+</div>
+<div id="mj-chatbot-window">
+  <div id="mj-chatbot-header">
+    HR Chatbot
+    <button id="mj-chatbot-close" title="Zavřít">&times;</button>
+  </div>
+  <div id="mj-chatbot-messages"></div>
+  <form id="mj-chatbot-inputbar">
+    <input id="mj-chatbot-input" type="text" placeholder="Napište zprávu..." autocomplete="off" required />
+    <button id="mj-chatbot-send" type="submit">Odeslat</button>
+  </form>
+</div>
+<script>
+const API_URL = "https://telegram-hr-assistant-9i1t.onrender.com/chatbot_api";
+const $bubble = document.getElementById("mj-chatbot-bubble");
+const $window = document.getElementById("mj-chatbot-window");
+const $close = document.getElementById("mj-chatbot-close");
+const $messages = document.getElementById("mj-chatbot-messages");
+const $inputbar = document.getElementById("mj-chatbot-inputbar");
+const $input = document.getElementById("mj-chatbot-input");
+const $send = document.getElementById("mj-chatbot-send");
+let sessionId = "guest-" + Math.random().toString(36).substr(2, 8);
+
+function appendMsg(text, sender) {
+  const div = document.createElement("div");
+  div.className = sender === "user" ? "mj-chatbot-msg-user" : "mj-chatbot-msg-bot";
+  div.innerText = text;
+  $messages.appendChild(div);
+  $messages.scrollTop = $messages.scrollHeight;
+}
+function setLoading(isLoading) {
+  $send.disabled = isLoading;
+  $input.disabled = isLoading;
+}
+
+async function sendMsg(text) {
+  appendMsg(text, "user");
+  setLoading(true);
+  try {
+    // Volání /ask_stream endpointu
+    const res = await fetch(API_URL + "/ask_stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question: text,
+        chat_id: sessionId,
+        message_id: Date.now() % 1000000
+      })
+    });
+    const data = await res.json();
+    appendMsg(data.answer || "Omlouvám se, nastala chyba na serveru.", "bot");
+  } catch (e) {
+    appendMsg("Omlouvám se, nepodařilo se získat odpověď.", "bot");
+  }
+  setLoading(false);
+}
+$bubble.onclick = () => { $window.style.display = "flex"; $bubble.style.display = "none"; $input.focus(); };
+$close.onclick = () => { $window.style.display = "none"; $bubble.style.display = "flex"; };
+$inputbar.onsubmit = e => {
+  e.preventDefault();
+  const text = $input.value.trim();
+  if (!text) return;
+  sendMsg(text);
+  $input.value = "";
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+  // Načti welcome zprávu
+  fetch(API_URL + "/welcome")
+    .then(res => res.json())
+    .then(data => appendMsg(data.welcome, "bot"));
+});
+</script>
+<!-- Chatbot Widget END -->
+
 </body>
 </html>
