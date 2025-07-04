@@ -232,6 +232,8 @@
         });
       });
     </script>
+
+
     <!-- Chatbot Widget BEGIN -->
 <style>
 #mj-chatbot-bubble {
@@ -319,7 +321,7 @@
   </form>
 </div>
 <script>
-const API_URL = "https://telegram-hr-assistant-9i1t.onrender.com/chatbot_api";
+const API_URL = "https://telegram-hr-assistant-9i1t.onrender.com/chat"; // místo /chatbot_api/ask_stream
 const $bubble = document.getElementById("mj-chatbot-bubble");
 const $window = document.getElementById("mj-chatbot-window");
 const $close = document.getElementById("mj-chatbot-close");
@@ -345,23 +347,22 @@ async function sendMsg(text) {
   appendMsg(text, "user");
   setLoading(true);
   try {
-    // Volání /ask_stream endpointu
-    const res = await fetch(API_URL + "/ask_stream", {
+    const res = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        question: text,
-        chat_id: sessionId,
-        message_id: Date.now() % 1000000
+        message: text,
+        session_id: sessionId
       })
     });
     const data = await res.json();
-    appendMsg(data.answer || "Omlouvám se, nastala chyba na serveru.", "bot");
+    appendMsg(data.reply || "Omlouvám se, nastala chyba na serveru.", "bot");
   } catch (e) {
     appendMsg("Omlouvám se, nepodařilo se získat odpověď.", "bot");
   }
   setLoading(false);
 }
+
 $bubble.onclick = () => { $window.style.display = "flex"; $bubble.style.display = "none"; $input.focus(); };
 $close.onclick = () => { $window.style.display = "none"; $bubble.style.display = "flex"; };
 $inputbar.onsubmit = e => {
@@ -373,10 +374,10 @@ $inputbar.onsubmit = e => {
 };
 
 window.addEventListener("DOMContentLoaded", () => {
-  // Načti welcome zprávu
-  fetch(API_URL + "/welcome")
-    .then(res => res.json())
-    .then(data => appendMsg(data.welcome, "bot"));
+  appendMsg(
+    "Dobrý den, s dovolením budu odpovídat svým hlasem, tedy v první osobě.\n\nNapište mi, s čím mohu pomoci. 🙂",
+    "bot"
+  );
 });
 </script>
 <!-- Chatbot Widget END -->
