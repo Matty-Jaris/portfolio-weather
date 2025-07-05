@@ -331,13 +331,31 @@ const $input = document.getElementById("mj-chatbot-input");
 const $send = document.getElementById("mj-chatbot-send");
 let sessionId = "guest-" + Math.random().toString(36).substr(2, 8);
 
-function appendMsg(text, sender) {
+function appendMsg(text, sender, buttons=[]) {
   const div = document.createElement("div");
   div.className = sender === "user" ? "mj-chatbot-msg-user" : "mj-chatbot-msg-bot";
-  div.innerText = text;
+  div.innerHTML = text;
+
+  if (buttons && buttons.length > 0 && sender === "bot") {
+    const btnWrap = document.createElement("div");
+    btnWrap.style.marginTop = "8px";
+    buttons.forEach(label => {
+      const btn = document.createElement("button");
+      btn.innerText = label;
+      btn.className = "bg-blue-500 text-white rounded px-3 py-1.5 mr-2 mb-1 hover:bg-blue-600 transition";
+      btn.onclick = () => {
+        $input.value = label;   // Vyplní input textem z tlačítka
+        sendMsg(label);         // Odešle jako novou zprávu
+        $input.focus();         // Kurzorem zpět do inputu
+      };
+      btnWrap.appendChild(btn);
+    });
+    div.appendChild(btnWrap);
+  }
   $messages.appendChild(div);
   $messages.scrollTop = $messages.scrollHeight;
 }
+
 function setLoading(isLoading) {
   $send.disabled = isLoading;
   $input.disabled = isLoading;
@@ -356,11 +374,13 @@ async function sendMsg(text) {
       })
     });
     const data = await res.json();
-    appendMsg(data.reply || "Omlouvám se, nastala chyba na serveru.", "bot");
+    // *** TADY MUSÍŠ PŘEDAT BUTTONS! ***
+    appendMsg(data.reply || "Omlouvám se, nastala chyba na serveru.", "bot", data.buttons || []);
   } catch (e) {
     appendMsg("Omlouvám se, nepodařilo se získat odpověď.", "bot");
   }
   setLoading(false);
+  $input.focus();
 }
 
 $bubble.onclick = () => { $window.style.display = "flex"; $bubble.style.display = "none"; $input.focus(); };
@@ -371,6 +391,7 @@ $inputbar.onsubmit = e => {
   if (!text) return;
   sendMsg(text);
   $input.value = "";
+  $input.focus();
 };
 
 window.addEventListener("DOMContentLoaded", () => {
