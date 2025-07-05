@@ -336,25 +336,30 @@ function appendMsg(text, sender, buttons=[]) {
   div.className = sender === "user" ? "mj-chatbot-msg-user" : "mj-chatbot-msg-bot";
   div.innerHTML = text;
 
+  // Tlačítka pod sebe
   if (buttons && buttons.length > 0 && sender === "bot") {
     const btnWrap = document.createElement("div");
     btnWrap.style.marginTop = "8px";
+    btnWrap.style.display = "flex";
+    btnWrap.style.flexDirection = "column";
     buttons.forEach(label => {
       const btn = document.createElement("button");
       btn.innerText = label;
-      btn.className = "bg-blue-500 text-white rounded px-3 py-1.5 mr-2 mb-1 hover:bg-blue-600 transition";
+      btn.className = "bg-blue-500 text-white rounded px-3 py-2 mb-2 hover:bg-blue-600 transition font-semibold text-base";
       btn.onclick = () => {
-        $input.value = label;   // Vyplní input textem z tlačítka
-        sendMsg(label);         // Odešle jako novou zprávu
-        $input.focus();         // Kurzorem zpět do inputu
+        $input.value = "";    // VYMAŽE INPUT
+        sendMsg(label);
+        $input.focus();
       };
       btnWrap.appendChild(btn);
     });
     div.appendChild(btnWrap);
   }
+
   $messages.appendChild(div);
   $messages.scrollTop = $messages.scrollHeight;
 }
+
 
 function setLoading(isLoading) {
   $send.disabled = isLoading;
