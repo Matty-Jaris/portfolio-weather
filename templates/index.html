@@ -366,11 +366,21 @@ function setLoading(isLoading) {
   $input.disabled = isLoading;
 }
 
+const STREAM_URL = "https://telegram-hr-assistant-9i1t.onrender.com/chat_stream"; // streamovací endpoint
+
 async function sendMsg(text) {
   appendMsg(text, "user");
   setLoading(true);
+
+  // Přidej bublinu pro streamovanou odpověď, budeme ji průběžně dopisovat
+  let streamDiv = document.createElement("div");
+  streamDiv.className = "mj-chatbot-msg-bot";
+  streamDiv.innerHTML = ""; // začátek prázdný
+  $messages.appendChild(streamDiv);
+  $messages.scrollTop = $messages.scrollHeight;
+
   try {
-    const res = await fetch(API_URL, {
+    const res = await fetch(STREAM_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -378,24 +388,64 @@ async function sendMsg(text) {
         session_id: sessionId
       })
     });
-    const data = await res.json();
-    // *** TADY MUSÍŠ PŘEDAT BUTTONS! ***
-    appendMsg(data.reply || "Omlouvám se, nastala chyba na serveru.", "bot", data.buttons || []);
+
+    if (!res.body) throw new Error("Streamování není podporováno.");
+
+    const reader = res.body.getReader();
+    let decoder = new TextDecoder("utf-8");
+    let buf = "";
+    let buttons = null;
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+
+      // Pokud přijde speciální blok s tlačítky (náš formát: "\n\n[[[BUTTONS]]]<json>")
+      let btnIndex = buf.indexOf("[[[BUTTONS]]]");
+      if (btnIndex !== -1) {
+        // Oddělit text a tlačítka
+        let textPart = buf.substring(0, btnIndex).trim();
+        let btnJson = buf.substring(btnIndex + 13).trim();
+        buttons = [];
+        try {
+          buttons = JSON.parse(btnJson);
+        } catch (e) {
+          // Pokud by se nepodařilo parse (teoreticky), nevadí
+        }
+        streamDiv.innerHTML = textPart;
+        // Přidat tlačítka (stejná logika jako v appendMsg)
+        if (buttons && buttons.length > 0) {
+          const btnWrap = document.createElement("div");
+          btnWrap.style.marginTop = "8px";
+          btnWrap.style.display = "flex";
+          btnWrap.style.flexDirection = "column";
+          buttons.forEach(label => {
+            const btn = document.createElement("button");
+            btn.innerText = label;
+            btn.className = "bg-blue-500 text-white rounded px-3 py-2 mb-2 hover:bg-blue-600 transition font-semibold text-base";
+            btn.onclick = () => {
+              $input.value = "";
+              sendMsg(label);
+              $input.focus();
+            };
+            btnWrap.appendChild(btn);
+          });
+          streamDiv.appendChild(btnWrap);
+        }
+        buf = ""; // už nepotřebujeme
+        break; // Konec streamování, vše máme
+      } else {
+        // Normální průběžné dopisování textu
+        streamDiv.innerHTML = buf;
+        $messages.scrollTop = $messages.scrollHeight;
+      }
+    }
+    // Pokud žádné tlačítka nedorazily, appendMsg je už na streamDiv – nic dalšího není třeba
   } catch (e) {
     appendMsg("Omlouvám se, nepodařilo se získat odpověď.", "bot");
   }
   setLoading(false);
-  $input.focus();
-}
-
-$bubble.onclick = () => { $window.style.display = "flex"; $bubble.style.display = "none"; $input.focus(); };
-$close.onclick = () => { $window.style.display = "none"; $bubble.style.display = "flex"; };
-$inputbar.onsubmit = e => {
-  e.preventDefault();
-  const text = $input.value.trim();
-  if (!text) return;
-  sendMsg(text);
-  $input.value = "";
   $input.focus();
 };
 
