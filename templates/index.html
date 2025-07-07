@@ -448,6 +448,23 @@ async function sendMsg(text) {
   setLoading(false);
   $input.focus();
 };
+$bubble.onclick = () => { 
+  $window.style.display = "flex"; 
+  $bubble.style.display = "none"; 
+  $input.focus(); 
+};
+$close.onclick = () => { 
+  $window.style.display = "none"; 
+  $bubble.style.display = "flex"; 
+};
+$inputbar.onsubmit = e => {
+  e.preventDefault();
+  const text = $input.value.trim();
+  if (!text) return;
+  sendMsg(text);
+  $input.value = "";
+  $input.focus();
+};
 
 window.addEventListener("DOMContentLoaded", () => {
   appendMsg(
