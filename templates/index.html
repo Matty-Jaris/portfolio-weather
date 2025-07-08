@@ -316,16 +316,25 @@
 }
 #mj-chatbot-send { background: #2563eb; color: #fff; border: none; border-radius: 8px; padding: 7px 16px; font-weight: bold; cursor: pointer;}
 #mj-chatbot-send:disabled { opacity: 0.7; cursor: default;}
+/* --- Avatar chatbota u bublin --- */
+.mj-chatbot-row { display: flex; align-items: flex-end; }
+.mj-chatbot-avatar { width: 32px; height: 32px; border-radius: 50%; margin-right: 8px; border:2px solid #fff; box-shadow:0 2px 4px rgba(37,99,235,0.12);}
+
+
 </style>
 
-<div id="mj-chatbot-bubble" title="Zeptejte se na cokoliv!">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#fff" fill-opacity=".13"/><path d="M7 8.5a5 5 0 0 1 10 0c0 2.36-2.19 4.02-4.13 4.85a.62.62 0 0 0-.37.57V15" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="18" r="1" fill="#fff"/></svg>
+<div id="mj-chatbot-bubble" title="Zeptej se mě!">
+  <img src="{% static 'images/martin-profile.png' %}" alt="Martin Jarábek" class="w-10 h-10 rounded-full border-2 border-white shadow-md" />
+  <span class="ml-3 font-semibold text-white hidden sm:inline">Zeptej se mě!</span>
 </div>
+
 <div id="mj-chatbot-window">
   <div id="mj-chatbot-header">
-    HR Chatbot
-    <button id="mj-chatbot-close" title="Zavřít">&times;</button>
-  </div>
+  <img src="{% static 'images/martin-profile.png' %}" alt="Martin" class="w-8 h-8 rounded-full mr-3 border-2 border-white shadow-sm" />
+  Martin – HR Asistent
+  <button id="mj-chatbot-close" title="Zavřít">&times;</button>
+</div>
+
   <div id="mj-chatbot-messages"></div>
   <form id="mj-chatbot-inputbar">
     <input id="mj-chatbot-input" type="text" placeholder="Napište zprávu..." autocomplete="off" required />
@@ -344,9 +353,24 @@ const $send = document.getElementById("mj-chatbot-send");
 let sessionId = "guest-" + Math.random().toString(36).substr(2, 8);
 
 function appendMsg(text, sender, buttons=[]) {
+  let rowDiv = document.createElement("div");
+  rowDiv.className = (sender === "bot") ? "mj-chatbot-row" : "";
+  if(sender === "bot") {
+    let avatar = document.createElement("img");
+    avatar.src = "{% static 'images/martin-profile.png' %}";
+    avatar.alt = "Martin";
+    avatar.className = "mj-chatbot-avatar";
+    rowDiv.appendChild(avatar);
+  }
   const div = document.createElement("div");
   div.className = sender === "user" ? "mj-chatbot-msg-user" : "mj-chatbot-msg-bot";
   div.innerHTML = text;
+  // ... tlačítka atd.
+  rowDiv.appendChild(div);
+  $messages.appendChild(rowDiv);
+  $messages.scrollTop = $messages.scrollHeight;
+}
+
 
   // Tlačítka pod sebe
   if (buttons && buttons.length > 0 && sender === "bot") {
